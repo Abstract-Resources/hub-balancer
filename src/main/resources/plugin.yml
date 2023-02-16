@@ -1,0 +1,4 @@
+name: hub-balancer
+version: 2023.02.1
+author: aabstractt
+main: dev.aabstractt.balancer.HubBalancer
