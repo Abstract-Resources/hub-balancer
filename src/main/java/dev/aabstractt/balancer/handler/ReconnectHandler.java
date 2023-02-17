@@ -20,8 +20,6 @@ public final class ReconnectHandler implements IReconnectHandler {
         LocalServerInfo betterServerInfo = ServerFactory.getInstance().getBetterServer(serverInfo.getServerName());
         if (betterServerInfo == null || !betterServerInfo.isOnline()) return null;
 
-        HubBalancer.updateLock(proxiedPlayer, betterServerInfo.getServerName());
-
         return betterServerInfo.toWaterdogServer();
     }
 }

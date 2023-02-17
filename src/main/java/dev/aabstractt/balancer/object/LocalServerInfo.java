@@ -1,6 +1,5 @@
 package dev.aabstractt.balancer.object;
 
-import dev.aabstractt.balancer.HubBalancer;
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,7 @@ public class LocalServerInfo {
     private final @NonNull String serverName;
     private int maxSlots;
 
-    private boolean online = false;
+    private boolean online;
 
     public @Nullable ServerInfo toWaterdogServer() {
         return ProxyServer.getInstance().getServerInfo(this.serverName);
@@ -24,6 +23,6 @@ public class LocalServerInfo {
     public int getCurrentPlayers() {
         ServerInfo serverInfo = this.toWaterdogServer();
 
-        return (serverInfo != null ? serverInfo.getPlayers().size() : 0) + HubBalancer.getServerPlayersCount(this.serverName);
+        return serverInfo == null ? 0 : serverInfo.getPlayers().size();
     }
 }

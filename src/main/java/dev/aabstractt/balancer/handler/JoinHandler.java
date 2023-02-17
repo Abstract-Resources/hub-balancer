@@ -16,8 +16,6 @@ public class JoinHandler implements IJoinHandler {
         LocalServerInfo betterServerInfo = ServerFactory.getInstance().getBetterServer(null);
         if (betterServerInfo == null || !betterServerInfo.isOnline()) return null;
 
-        HubBalancer.updateLock(proxiedPlayer, betterServerInfo.getServerName());
-
         return betterServerInfo.toWaterdogServer();
     }
 }

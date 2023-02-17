@@ -33,12 +33,10 @@ public final class HubCommand extends Command {
 
         LocalServerInfo betterServerInfo = ServerFactory.getInstance().getBetterServer(((ProxiedPlayer) sender).getServerInfo().getServerName());
         if (betterServerInfo == null || !betterServerInfo.isOnline()) {
-            ((ProxiedPlayer) sender).disconnect(new TranslationContainer("waterdog.downstream.transfer.failed", "Hub", ""));
+            sender.sendMessage(new TranslationContainer("waterdog.downstream.transfer.failed", "Hub", ""));
 
             return true;
         }
-
-        HubBalancer.updateLock((ProxiedPlayer) sender, betterServerInfo.getServerName());
 
         ((ProxiedPlayer) sender).connect(betterServerInfo.toWaterdogServer());
 

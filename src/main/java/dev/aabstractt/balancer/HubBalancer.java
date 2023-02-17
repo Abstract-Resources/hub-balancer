@@ -1,6 +1,5 @@
 package dev.aabstractt.balancer;
 
-import com.google.common.collect.Maps;
 import dev.aabstractt.balancer.command.HubCommand;
 import dev.aabstractt.balancer.datasource.RedisDataSource;
 import dev.aabstractt.balancer.factory.ServerFactory;
@@ -16,7 +15,6 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public final class HubBalancer extends Plugin {
@@ -24,7 +22,6 @@ public final class HubBalancer extends Plugin {
     @Getter private static HubBalancer instance = null;
 
     private final static @NonNull Set<@NonNull String> locked = new HashSet<>();
-    private final static @NonNull Map<@NonNull String, @NonNull String> serverLocked = Maps.newConcurrentMap();
 
     @Override
     public void onEnable() {
@@ -55,30 +52,13 @@ public final class HubBalancer extends Plugin {
         ProxyServer.getInstance().getScheduler().scheduleDelayed(() -> HubBalancer.unlock(player), 20);
     }
 
-    public static void updateLock(@NonNull ProxiedPlayer player, @NonNull String serverName) {
-        if (!serverLocked.containsKey(player.getXuid())) return;
-
-        serverLocked.put(player.getXuid(), serverName);
-    }
-
     public static void unlock(@NonNull ProxiedPlayer player) {
         locked.remove(player.getXuid());
-        serverLocked.remove(player.getXuid());
+
+        System.out.println("Applying unlock to " + player.getName());
     }
 
     public static boolean isLocked(@NonNull ProxiedPlayer player) {
         return locked.contains(player.getXuid());
-    }
-
-    public static int getServerPlayersCount(@NonNull String serverName) {
-        int count = 0;
-
-        for (String targetServerName : serverLocked.values()) {
-            if (!targetServerName.equals(serverName)) continue;
-
-            count++;
-        }
-
-        return count;
     }
 }
