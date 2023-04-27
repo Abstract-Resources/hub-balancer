@@ -1,6 +1,5 @@
 package dev.aabstractt.balancer.factory;
 
-import com.google.common.collect.Maps;
 import dev.aabstractt.balancer.datasource.RedisDataSource;
 import dev.aabstractt.balancer.object.LocalServerInfo;
 import dev.waterdog.waterdogpe.ProxyServer;
@@ -12,12 +11,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ServerFactory {
 
     @Getter private final static @NonNull ServerFactory instance = new ServerFactory();
 
-    private final @NonNull Map<@NonNull String, @NonNull LocalServerInfo> servers = Maps.newConcurrentMap();
+    private final @NonNull Map<@NonNull String, @NonNull LocalServerInfo> servers = new ConcurrentHashMap<>();
 
     public void init() {
         List<String> priorities = ProxyServer.getInstance().getConfiguration().getPriorities();

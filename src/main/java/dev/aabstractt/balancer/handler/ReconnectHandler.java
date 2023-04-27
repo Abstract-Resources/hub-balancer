@@ -3,9 +3,9 @@ package dev.aabstractt.balancer.handler;
 import dev.aabstractt.balancer.HubBalancer;
 import dev.aabstractt.balancer.factory.ServerFactory;
 import dev.aabstractt.balancer.object.LocalServerInfo;
+import dev.waterdog.waterdogpe.network.connection.handler.IReconnectHandler;
 import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
-import dev.waterdog.waterdogpe.utils.types.IReconnectHandler;
 
 public final class ReconnectHandler implements IReconnectHandler {
 

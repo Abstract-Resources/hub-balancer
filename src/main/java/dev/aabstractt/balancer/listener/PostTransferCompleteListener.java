@@ -10,6 +10,6 @@ public final class PostTransferCompleteListener {
         ProxiedPlayer player = ev.getPlayer();
 
         player.sendMessage(Color.AQUA + "Finding an optimal server for you...");
-        player.sendMessage(Color.DARK_GRAY + Color.BOLD.toString() + "> " + Color.AQUA + "You are now connected on " + Color.DARK_AQUA + Color.BOLD + ev.getClient().getServerInfo().getServerName());
+        player.sendMessage(Color.DARK_GRAY + Color.BOLD.toString() + "> " + Color.AQUA + "You are now connected on " + Color.DARK_AQUA + Color.BOLD + ev.getConnection().getServerInfo().getServerName());
     }
 }

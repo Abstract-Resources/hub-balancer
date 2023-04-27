@@ -3,11 +3,11 @@ package dev.aabstractt.balancer.handler;
 import dev.aabstractt.balancer.HubBalancer;
 import dev.aabstractt.balancer.factory.ServerFactory;
 import dev.aabstractt.balancer.object.LocalServerInfo;
+import dev.waterdog.waterdogpe.network.connection.handler.IJoinHandler;
 import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
-import dev.waterdog.waterdogpe.utils.types.IJoinHandler;
 
-public class JoinHandler implements IJoinHandler {
+public final class JoinHandler implements IJoinHandler {
 
     @Override
     public ServerInfo determineServer(ProxiedPlayer proxiedPlayer) {
